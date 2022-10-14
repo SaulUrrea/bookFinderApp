@@ -10,4 +10,7 @@
     <color name="blue">#086BB5</color>
     <color name="lightCoffee">#FFFFEC</color>
     <color name="darkCoffee">#6F4E37</color>
+    <color name="gray50">#5B575656</color>
+    <color name="red">#E61E1E</color>
+    <color name="colorWhite80">#CCFFFFFF</color>
 </resources>

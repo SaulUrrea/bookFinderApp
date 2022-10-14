@@ -6,22 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devsaul.bookfinderapp.R
-import com.devsaul.bookfinderapp.databinding.FragmentFavBinding
-import com.devsaul.bookfinderapp.databinding.FragmentSearchBinding
 
-
-class FavFragment : Fragment() {
-
-    private lateinit var binding: FragmentFavBinding
+class BookDetailFragment : Fragment() {
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavBinding.inflate(inflater, container, false)
-        return binding.root
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_book_detail, container, false)
     }
-
 
 }

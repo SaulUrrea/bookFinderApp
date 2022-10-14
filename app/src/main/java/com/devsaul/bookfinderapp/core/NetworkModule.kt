@@ -10,24 +10,24 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class) //Establece el tiempo de la instancia o alcance
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    //Este modulo provee dependencias de librerias o clases que contienen interfaces
-    // y que no se dejan injectar con constructor o que no podemos modificar
+    private const val BASE_URL = "https://openlibrary.org/"
 
-    @Singleton //Mantiene una unica instancia del objeto
-    @Provides //Etiqueta para declarar algo que se puede proveer
-    fun provideRetrofit(): Retrofit {
+    @Singleton
+    @Provides
+    fun getBookForTitle(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://drawsomething-59328-default-rtdb.europe-west1.firebasedatabase.app/")
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
+
     @Singleton
     @Provides
-    fun provideQuoteApiClient(retrofit: Retrofit): NetworkApiClient {
+    fun provideApiClient(retrofit: Retrofit): NetworkApiClient {
         return retrofit.create(NetworkApiClient::class.java)
     }
 }

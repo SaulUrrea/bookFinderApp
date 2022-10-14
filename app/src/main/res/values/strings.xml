@@ -2,7 +2,6 @@
     <string name="app_name">bookFinderApp</string>
     <string name="fav_title">Favoritos</string>
     <string name="search_title">Buscador</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ingresa_un_libro_a_buscar">Ingresa un libro a buscar</string>
+    <string name="MSG_SEARCH_ERRO">Favor ingresar un titulo o autor</string>
 </resources>
