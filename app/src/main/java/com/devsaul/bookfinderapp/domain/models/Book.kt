@@ -24,6 +24,9 @@ data class Book(
     val subject: List<String>?,
     val time_facet: List<String>?,
     val title: String?,
+    val subtitle: String?,
+    val isbn: List<String>?,
+    val _version_: Long
 )
 
-fun Book.toDomain() = Book(author_name, contributor, first_publish_year, language, number_of_pages_median, person, place, publish_place, publisher, subject, time_facet, title)
+fun Book.toDomain() = Book(author_name, contributor, first_publish_year, language, number_of_pages_median, person, place, publish_place, publisher, subject, time_facet, title,subtitle,isbn,_version_)

@@ -15,7 +15,7 @@ class SearchBookUseCase @Inject constructor(
         } else if (!author.isNullOrEmpty()) {
             books = repository.getBookForAuthor(convertDataForResquest(author))
         }
-        return books
+        return books.toSet().toList()
     }
 
     private fun convertDataForResquest(param: String): String {
