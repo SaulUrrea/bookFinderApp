@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">bookFinderApp</string>
+    <string name="fav_title">Favoritos</string>
+    <string name="search_title">Buscador</string>
+    <string name="ingresa_un_libro_a_buscar">Ingresa un libro a buscar</string>
+    <string name="MSG_SEARCH_ERRO">Favor ingresar un titulo o autor</string>
+    <string name="titulo">Titulo</string>
+    <string name="autor">Autor</string>
+    <string name="desp_book">Descripción</string>
+    <string name="close">Cerrar</string>
+    <string name="lista_de_favoritos">Lista de favoritos</string>
+    <string name="fav_add_message">Libro agregado a favoritos con exito</string>
+    <string name="fav_remove_message">Libro borrado de favoritos con exito</string>
 </resources>
