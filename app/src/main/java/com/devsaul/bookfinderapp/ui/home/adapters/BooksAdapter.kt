@@ -94,8 +94,8 @@ class BooksAdapter(var books: MutableList<Book>, val fragment: Fragment, val fav
             favViewModel.removeFavorite(book)
             favViewModel.bookIsRemove.observe(fragment.viewLifecycleOwner){
                 if (it){
-                    favViewModel.books.postValue(listOf())
                     books.remove(book)
+                    favViewModel.books.postValue(books)
                     notifyDataSetChanged()
                 }
             }
