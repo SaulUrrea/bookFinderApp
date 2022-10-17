@@ -21,6 +21,7 @@
             android:fontFamily="cursive"
             android:text="@string/lista_de_favoritos"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textColor="@color/darkCoffee"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/dividerTop"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,9 +70,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
             android:text="No tienes favoritos"
+            android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@color/darkCoffee"
-            android:textAlignment="center"
             android:textSize="30sp" />
 
         <TextView
@@ -80,8 +81,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_default"
             android:text="Regresa a la pantalla de inicio para agregar favoritos"
-            android:textColor="@color/darkCoffee"
             android:textAlignment="center"
+            android:textColor="@color/darkCoffee"
             android:textSize="20sp" />
 
 
