@@ -1,5 +1,7 @@
 package com.devsaul.bookfinderapp.domain.models
 
+import com.devsaul.bookfinderapp.data.room.entities.BookEntity
+
 
 data class ApiResponse(
     val docs: List<Book>?,
@@ -12,6 +14,7 @@ data class ApiResponse(
 )
 
 data class Book(
+    val id: Int? = null,
     val author_name: List<String>?,
     val contributor: List<String>?,
     val first_publish_year: Int?,
@@ -26,7 +29,24 @@ data class Book(
     val title: String?,
     val subtitle: String?,
     val isbn: List<String>?,
-    val _version_: Long
+    val _version_: Long?
 )
 
-fun Book.toDomain() = Book(author_name, contributor, first_publish_year, language, number_of_pages_median, person, place, publish_place, publisher, subject, time_facet, title,subtitle,isbn,_version_)
+fun BookEntity.toDomain() = Book(
+    id,
+    author_name?.split(","),
+    contributor?.split(","),
+    first_publish_year,
+    language?.split(","),
+    number_of_pages_median,
+    person?.split(","),
+    place?.split(","),
+    publish_place?.split(","),
+    publisher?.split(","),
+    subject?.split(","),
+    time_facet?.split(","),
+    title,
+    subtitle,
+    isbn?.split(","),
+    _version_
+)

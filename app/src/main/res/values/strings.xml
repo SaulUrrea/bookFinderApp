@@ -8,4 +8,7 @@
     <string name="autor">Autor</string>
     <string name="desp_book">Descripción</string>
     <string name="close">Cerrar</string>
+    <string name="lista_de_favoritos">Lista de favoritos</string>
+    <string name="fav_add_message">Libro agregado a favoritos con exito</string>
+    <string name="fav_remove_message">Libro borrado de favoritos con exito</string>
 </resources>

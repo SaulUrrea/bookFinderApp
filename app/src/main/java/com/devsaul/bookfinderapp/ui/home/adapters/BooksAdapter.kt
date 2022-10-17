@@ -6,21 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.ToggleButton
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navArgument
 import androidx.recyclerview.widget.RecyclerView
 import com.devsaul.bookfinderapp.R
+import com.devsaul.bookfinderapp.databinding.MaterialAlertBookBinding
 import com.devsaul.bookfinderapp.domain.models.Book
-import com.devsaul.bookfinderapp.ui.home.fragments.SearchFragment
+import com.devsaul.bookfinderapp.ui.home.fragments.FavFragment
+import com.devsaul.bookfinderapp.ui.home.viewmodel.FavViewModel
 import com.devsaul.bookfinderapp.utils.setBookInfo
+import com.devsaul.bookfinderapp.utils.setUpViewAler
+import com.devsaul.bookfinderapp.utils.toast
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
 
-class BooksAdapter(val books: List<Book>, val fragment: SearchFragment) :
+class BooksAdapter(var books: MutableList<Book>, val fragment: Fragment, val favViewModel: FavViewModel) :
     RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -47,12 +47,14 @@ class BooksAdapter(val books: List<Book>, val fragment: SearchFragment) :
         return ViewHolder(v)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        val book = books[i]
+    override fun onBindViewHolder(viewHolder: ViewHolder, posicion: Int) {
+        val book = books[posicion]
         val imgUrl = "https://covers.openlibrary.org/b/isbn/${book.isbn?.get(0)}-M.jpg"
         val authorText = "Autor: " + (book.author_name?.joinToString(", ") ?: "a")
         val dateText = "Fecha publicación: " + book.first_publish_year.toString()
         val pageText = "Numero de paginas: " + book.number_of_pages_median.toString()
+
+        Log.i("image",imgUrl)
 
         viewHolder.title.text = book.title
         viewHolder.subTitle.setBookInfo(authorText, viewHolder.subTitle)
@@ -66,9 +68,41 @@ class BooksAdapter(val books: List<Book>, val fragment: SearchFragment) :
             .into(viewHolder.img)
 
         viewHolder.cardItem.setOnClickListener {
-            fragment.setAlert(book)
+            setAlert(book)
         }
 
+    }
+
+    private fun setAlert(book: Book) {
+        val bindingAlert: MaterialAlertBookBinding =
+            MaterialAlertBookBinding.inflate(fragment.layoutInflater)
+        val bookDialogAlert = MaterialAlertDialogBuilder(
+            fragment.requireContext(),
+            com.google.android.material.R.style.MaterialAlertDialog_Material3
+        )
+            .setView(bindingAlert.root)
+            .setNegativeButton(fragment.requireContext().getString(R.string.close)) { dialog, which ->
+                dialog.dismiss()
+            }
+            .create()
+        bookDialogAlert.show()
+        bindingAlert.fbAddFav.setOnClickListener {
+            favViewModel.addFavorite(book)
+            fragment.toast(fragment.requireContext().getString(R.string.fav_add_message))
+        }
+        bindingAlert.fbDeleteFav.setOnClickListener {
+            favViewModel.removeFavorite(book)
+            favViewModel.bookIsRemove.observe(fragment.viewLifecycleOwner){
+                if (it){
+                    favViewModel.books.postValue(listOf())
+                    books.remove(book)
+                    notifyDataSetChanged()
+                }
+            }
+            fragment.toast(fragment.requireContext().getString(R.string.fav_remove_message))
+            bookDialogAlert.dismiss()
+        }
+        bookDialogAlert.setUpViewAler(book, bindingAlert,(fragment is FavFragment))
     }
 
     override fun getItemCount(): Int {

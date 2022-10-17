@@ -5,7 +5,7 @@ import com.devsaul.bookfinderapp.domain.models.Book
 import java.util.*
 import javax.inject.Inject
 
-class SearchBookUseCase @Inject constructor(
+class GetBooksUseCase @Inject constructor(
     private val repository: Repository
 ) {
     suspend fun searchBook(title: String? = null, author: String? = null): List<Book> {

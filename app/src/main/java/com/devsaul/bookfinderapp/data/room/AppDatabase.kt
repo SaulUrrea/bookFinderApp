@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import com.devsaul.bookfinderapp.data.room.dao.BookDao
 import com.devsaul.bookfinderapp.data.room.entities.BookEntity
 
-@Database(entities = [BookEntity::class], version = 1, exportSchema = false)
+@Database(entities = [BookEntity::class], version = 4, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getBookDao(): BookDao
